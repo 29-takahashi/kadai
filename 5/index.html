@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Enquete</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="jumbotron text-center">
+                <h1>Enquete</h1>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="text-center">
+                        <form method="post" action="comfirm_enq.php">
+                            <p><label>name:</label><input name="name" type="text"></p>
+                            <p><label>email:</label><input name="mail" type="email"></p>
+                            <p><label>age:</label><input name="age" type="text"></p>
+                            <p><label>sex:</label>
+                            man:<input name="sex" type="radio" value="man">
+                            woman:<input name="sex" type="radio" value="woman">
+                            </p>
+                            <p><label>hobby:</label>
+                            <input name="hobby[]" type="checkbox" value="music">:music
+                            <input name="hobby[]" type="checkbox" value="travel">:travel
+                            <input name="hobby[]" type="checkbox" value="fashion">:fashion</p>
+                            <p><label>Enquete:</label><input name="toi" type="text"></p>
+                            <p><input type="reset" value="RESET">
+                            <input type="submit" value="SUBMIT"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
