@@ -23,7 +23,7 @@
                     $l_id = $row["news_id"];
                     echo '<dt class="news-date">';
                     echo date('Y/m/d', strtotime($date)) . '：</dt>';
-                    echo '<dd class="news-description"><a href="news.php&id=' . $l_id . '">';
+                    echo '<dd class="news-description"><a href="news.php?id=' . $l_id . '">';
                     echo mb_substr($row["news_title"], 0, 10) . '</a></dd>';
                 }
                 $pdo = null;
