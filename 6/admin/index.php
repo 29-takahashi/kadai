@@ -19,8 +19,8 @@
 	    <li>
 		    <!-- 検索する時は、情報が欲しいのでGET -->
 			<form action="search_execute.php" method="get">
-				記事ID: <input type="text" name="id" value="" />
-				<input type="submit" />
+				記事ID: <input type="text" name="id" size="5" maxlength="3" placeholder=1 />
+				<input type="submit" value="検索" />
 			</form>
 		</li>
 	    <li><a href="news_list.php">一覧</a></li>
