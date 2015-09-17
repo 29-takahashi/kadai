@@ -6,7 +6,7 @@
 	$author = $_POST["author"];
 
 	$pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
-	$sql = "UPDATE news set news_id = '" .$l_id. "', news_title = '" .$news_title. "', show_flg = " .$show_flg. ", author = '" .$author. "', update_date = sysdate() WHERE news_id = $l_id";
+	$sql = "UPDATE news set news_id = '" .$l_id. "', news_title = '" .$news_title. "', news_detail = '" .$news_detail. "', show_flg = " .$show_flg. ", author = '" .$author. "', update_date = sysdate() WHERE news_id = $l_id";
 	$stmt = $pdo->prepare($sql);
 	$result = $stmt->execute();
 	if($result) {

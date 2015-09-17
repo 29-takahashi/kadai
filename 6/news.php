@@ -14,7 +14,7 @@
         }
     } else {
         $pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
-        $sql = "SELECT * FROM news";
+        $sql = "SELECT * FROM news where show_flg = 1";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -46,7 +46,7 @@
                         echo '<dt class="news-date">';
                         echo date('Y/m/d', strtotime($date)) . '：</dt>';
                         echo '<dd class="news-description"><a href="news.php?id=' . $l_id . '">';
-                        echo mb_substr($row["news_title"], 0, 10) . '</a></dd>';
+                        echo mb_substr($row["news_title"], 0, 40) . '</a></dd>';
                     }
                 }
                 $pdo = null;

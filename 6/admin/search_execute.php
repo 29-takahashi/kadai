@@ -21,11 +21,18 @@
 	$view .= "</table>";
 	$pdo = null;
 ?>
-<html>
-<head></head>
+
+<!doctype html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>検索結果</title>
+</head>
+
 <body>
-<?php echo $view ?>
-<hr>
-<a href="index.php">管理画面</a> 
+	<h1>検索結果</h1>
+	<?php echo $view ?>
+	<hr>
+	<a href="index.php">管理画面</a> 
 </body>
 </html>
