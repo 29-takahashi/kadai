@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if(!isset($_SESSION['login'])) {
+        header("Location: login.php");    
+    }
+
 	$l_id = $_GET["id"];
 	$pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
 	$sql = "SELECT * FROM news WHERE news_id = $l_id";

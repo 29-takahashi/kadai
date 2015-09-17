@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if(!isset($_SESSION['login'])) {
+        header("Location: login.php");    
+    }
+
 	$news_title = $_POST["news_title"];
 	$news_detail = $_POST["news_detail"];
 	$show_flg = $_POST["show_flg"];
