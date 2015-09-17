@@ -10,10 +10,11 @@
 	$stmt = $pdo->prepare($sql);
 	$result = $stmt->execute();
 	if($result) {
-		echo "データが更新できました";
-		echo "<a href=news_list.php>一覧へ</a>";
+		echo "データが更新できました。<br><hr>";
+		echo "<a href=news_list.php>一覧</a>|<a href=index.php>管理</a>";
 	} else {
-		echo "データの登録に失敗しました";
+		echo "データの登録に失敗しました。<br><hr>";
+		echo "<a href=news_list.php>一覧</a>|<a href=index.php>管理</a>";
 	}
 	$pdo = null;
 ?>
