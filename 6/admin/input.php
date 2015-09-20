@@ -1,7 +1,6 @@
 <?php
 	include("check.php");
 	include("header.php");
-	include("search.php");
 ?>
 
 <form action="input_execute.php" method="post">

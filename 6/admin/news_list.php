@@ -1,12 +1,11 @@
 <?php
     include("check.php");
+    include("header.php");
     $pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
     $sql = "SELECT * FROM news";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    include("header.php");
-    include("search.php");
 ?>
 
 <ul class="list-group">

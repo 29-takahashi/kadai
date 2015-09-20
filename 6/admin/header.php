@@ -15,7 +15,16 @@
 				<li><a href="index.php">Home</a></li>
 				<li><a href="news_list.php">一覧</a></li>
 	            <li><a href="input.php">登録</a></li>
+	            <li>
+			        <form action="search_execute.php" method="get" class="navbar-form">
+						<div class="form-group">
+							<input type="text" class="form-control" name="id" size="5" maxlength="3" placeholder="記事ID" />
+							<input type="submit" value="検索" class="btn btn-primary btn-xs" />
+						</div>
+					</form>	
+	            </li>
 			</ul>
+
 			<ul class="nav navbar-nav navbar-right">				
 				<li><a href="session_clear.php"><button class="btn btn-danger btn-xs">ログオフ</button></a></li>				
 			</ul>

@@ -1,8 +1,7 @@
 <?php
 	include("check.php");
 	include("header.php");
-	include("search.php");
-
+	
 	$l_id = $_GET["id"];
 	$pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
 	$sql = "SELECT * FROM news WHERE news_id = $l_id";
