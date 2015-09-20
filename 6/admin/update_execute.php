@@ -1,8 +1,5 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['login'])) {
-        header("Location: login.php");    
-    }
+	include("check.php");
 
 	$l_id = $_POST["l_id"];
 	$news_title = $_POST["news_title"];

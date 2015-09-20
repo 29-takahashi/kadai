@@ -1,8 +1,5 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['login'])) {
-        header("Location: login.php");    
-    }
+	include("check.php");
 
 	$l_id = $_GET["id"];
 	$pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
@@ -27,17 +24,14 @@
 	$pdo = null;
 ?>
 
-<!doctype html>
-<html lang="ja">
-<head>
-	<meta charset="utf-8">
-	<title>検索結果</title>
-</head>
+<?php
+	include("header.php");
+	include("search.php");
+?>
 
-<body>
-	<h1>検索結果</h1>
-	<?php echo $view ?>
-	<hr>
-	<a href="index.php">管理画面</a> 
-</body>
-</html>
+<h1>検索結果</h1>
+
+<?php
+	echo $view;
+	include("footer.php");
+?>

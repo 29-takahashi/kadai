@@ -36,7 +36,7 @@
         <dl class="clearfix">
             <?php
                 if (isset($_GET["id"])){
-                    echo '<dd class="news-title">' . $news_title . "</dd>";
+                    echo '<dd class="news-title"><strong>' . $news_title . "</strong></dd>";
                     echo "<dd>" . $news_detail . "</dd>";
                     echo '<p class="view-detail text-right"><a href="news.php">ニュース一覧を見る</a></p>';
                 } else{
