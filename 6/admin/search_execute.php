@@ -26,11 +26,7 @@
 
 <?php
 	include("header.php");
-?>
-
-<h1>検索結果</h1>
-
-<?php
-	echo $view;
+	echo '<p>検索結果：</p>';
+	echo '<pre>' .$view. '</pre>';
 	include("footer.php");
 ?>
