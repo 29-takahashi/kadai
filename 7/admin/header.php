@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 	<meta charset="utf-8">
-	<title>管理画面</title>
+	<title>Nice daddy管理画面</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 <body>
@@ -19,13 +19,11 @@
 			</div>
 			<div class="collapse navbar-collapse" id="mainNav">
 				<ul class="nav navbar-nav">
-					<li><a href="index.php">Home</a></li>
 					<li><a href="news_list.php">一覧</a></li>
 		            <li><a href="input.php">登録</a></li>
 		            <li>
 				        <form action="search_execute.php" method="get" class="navbar-form">
 							<div class="form-group">
-								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 								<input type="text" class="form-control" name="id" size="5" maxlength="3" placeholder="記事ID" />
 								<input type="submit" value="検索" class="btn btn-primary btn-xs" />
 							</div>
