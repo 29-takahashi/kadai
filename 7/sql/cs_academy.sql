@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015 年 9 月 23 日 01:05
+-- Generation Time: 2015 年 9 月 23 日 15:30
 -- サーバのバージョン： 5.6.25
 -- PHP Version: 5.6.11
 
@@ -71,6 +71,31 @@ INSERT INTO `enq` (`id`, `name`, `email`, `age`, `create_date`, `update_date`) V
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `img`
+--
+
+CREATE TABLE IF NOT EXISTS `img` (
+  `news_id` int(11) NOT NULL,
+  `img` varchar(50) NOT NULL,
+  `alt` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `img`
+--
+
+INSERT INTO `img` (`news_id`, `img`, `alt`) VALUES
+(11, '11.jpg', '11記事の画像'),
+(12, '12.jpg', '12記事の画像'),
+(13, '13.jpg', '13記事の画像'),
+(14, '14.jpg', '14記事の画像'),
+(15, '15.jpg', '15記事の画像'),
+(16, '16.jpg', '16記事の画像'),
+(17, '17.jpg', '17記事の画像');
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `news`
 --
 
@@ -125,6 +150,12 @@ ALTER TABLE `enq`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `img`
+--
+ALTER TABLE `img`
+  ADD PRIMARY KEY (`news_id`);
+
+--
 -- Indexes for table `news`
 --
 ALTER TABLE `news`
@@ -144,6 +175,11 @@ ALTER TABLE `category`
 --
 ALTER TABLE `enq`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `img`
+--
+ALTER TABLE `img`
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `news`
 --

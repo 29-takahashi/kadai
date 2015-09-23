@@ -9,13 +9,15 @@
 		<li data-target="#carousel-example" data-slide-to="2"></li>
 		<li data-target="#carousel-example" data-slide-to="3"></li>
 		<li data-target="#carousel-example" data-slide-to="4"></li>
+		<li data-target="#carousel-example" data-slide-to="5"></li>
+		<li data-target="#carousel-example" data-slide-to="6"></li>
 	</ol>
 
 	<!-- スライドの内容 -->
 	<div class="carousel-inner">
 		<?php
 			$pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
-			$sql = "SELECT * FROM news,category where show_flg = 1 AND  news.category_id = category.category_id ORDER BY update_date DESC LIMIT 5";
+			$sql = "SELECT * FROM news,category,img where show_flg = 1 AND news.category_id = category.category_id AND news.news_id = img.news_id ORDER BY update_date DESC LIMIT 7";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
 			$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -25,13 +27,15 @@
 			    $title = $row["news_title"];
 			    $detail = $row["news_detail"];
 			    $category_name = $row["category_name"];
+			    $img = $row["img"];
 			    if ($row === reset($results)){
 				    echo '<div class="item active">';
 			    } else {
 				    echo '<div class="item">';
 			    }
 			    echo '<a href="news.php?id=' .$l_id. '">';
-			    echo '<img src="img/c_img.jpg" class="img-responsive" alt="test">';
+			    // echo '<img src="img/c_img.jpg" class="img-responsive" alt="画像">';
+			    echo '<img src="img/' .$img. '" class="img-responsive" alt="画像">';
 			    echo '<div class="carousel-caption"><h2>' .$title. '</h2><p>';
 			    echo mb_substr($detail, 0, 20). '</p><p>';
 			    echo date('Y/m/d', strtotime($date)). '[' .$category_name. ']</p></div></a>';
