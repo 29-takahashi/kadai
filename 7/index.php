@@ -39,14 +39,14 @@
 			}
 			$pdo = null;
     	?>
-		<!-- 左右の移動ボタン -->
-		<a class="left carousel-control" href="#carousel-example" data-slide="prev">
-			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-		</a>
-		<a class="right carousel-control" href="#carousel-example" data-slide="next">
-			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-  		</a>
-	</div>
+    </div>
+	<!-- 左右の移動ボタン -->
+	<a class="left carousel-control" href="#carousel-example" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	</a>
+	<a class="right carousel-control" href="#carousel-example" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	</a>
 </div>
 
 <!-- 	<div id="green">
