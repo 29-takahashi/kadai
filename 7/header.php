@@ -7,9 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Nice daddy</title>
-    <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
     <link href="css/main.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -34,17 +32,16 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="admin/">管理画面</a></li>
-            <!-- <li><a href="#">Popularity</a></li> -->
-            <!-- <li><a href="category.php">Category</a></li> -->
-<!--             <li>
-		        <form action="search_execute.php" method="get" class="navbar-form navbar-right">
-					<div class="form-group">
-						<input type="text" class="form-control" name="id" size="20" placeholder="キーワード" />
-					</div>
-					<input type="submit" value="検索" />
-				</form>	
-            </li> -->
+            <!-- <li><a href="admin/">管理画面</a></li> -->
+            <li>
+              <form action="search_execute.php" method="get" class="navbar-form navbar-right">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="search" size="25" placeholder="Search news..." />
+                </div>
+                <!-- <input type="submit" value="検索" class="btn btn-success" /> -->
+                <button class="btn btn-default">検索</button>
+              </form>	
+            </li>
             <!-- <li><a href="#contact">Contack</a></li> -->
           </ul>
         </div><!--/.nav-collapse -->

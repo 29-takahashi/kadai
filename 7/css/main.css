@@ -111,11 +111,11 @@ a:after {
 }
 
 .btn {
-	padding: 10px 30px;
+	padding: 0 5px;
 	margin-bottom: 0;
-	font-size: 18px;
+	font-size: 15px;
 	border: 5px solid transparent;
-	border-radius: 0px;
+	border-radius: 5px;
 }
 
 .lead {
@@ -133,7 +133,7 @@ a:after {
 }
 
 #hello:nth-child(even) {
-	background-color: #74cfae;
+	/*background-color: #74cfae;*/
 	width: 100%;
 	height: 100%;
 /*	padding-top: 50px;
@@ -228,12 +228,18 @@ a:after {
     opacity: 1;
 }
 
-.pero_test{
-	background: rgba(256,256,256,0.8);
-	position: absolute;
-	padding: 10px 20px 0px 20px;
-	bottom: 20px;
-	/*right: 20px;*/
-	width: 480px;
-	text-align: left;
+.pero {
+	overflow: hidden;
+}
+
+.kiji img {
+	margin-right: 10px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	float: left;
+}
+
+.pero img {
+	margin-right: 10px;
+	border-radius: 10px;
 }
