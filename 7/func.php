@@ -47,7 +47,14 @@
 	function news_view(){
 	    if (isset($_GET["id"])){
 	    	$news_id = $_GET["id"];
-		    $pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
+
+	    	//人気記事カウントアップ
+			$pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
+			$sql = "INSERT INTO click_count(count_id,news_id, click_date) VALUES (NULL, '" .$news_id. "', sysdate())";
+			$stmt = $pdo->prepare($sql);
+			$result = $stmt->execute();
+
+		    // $pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
 		    $sql = "SELECT * FROM news,category,img where news.news_id = $news_id AND show_flg = 1 AND news.category_id = category.category_id AND news.news_id = img.news_id";
 		    $stmt = $pdo->prepare($sql);
 		    $stmt->execute();

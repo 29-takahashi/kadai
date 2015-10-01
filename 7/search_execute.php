@@ -13,12 +13,11 @@
 	$view .= "<table>";
 	foreach($results as $row) {
 		$view .= "<tr>";
-		// $view .= "<td><a href=update.php?id=" . $row["news_id"] . ">" . $row["news_id"] . "</a></td>";
-		$view .= "<td><a href=update.php?id=" .$row["news_id"]. ">" .$row["news_title"]. "</a></td>";
-		$view .= "</tr>";
+		$view .= '<td><a href="news.php?id=' .$row["news_id"]. '">' .$row["news_title"]. '</a></td>';
+		$view .= '</tr>';
 	}
 	// table閉じタグで終了
-	$view .= "</table>";
+	$view .= '</table>';
 	$pdo = null;
 ?>
 
