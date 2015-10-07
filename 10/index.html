@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <style>
+        /*******************************
+        * 左からの吹き出し
+        ********************************/
+        .balloon:nth-child(odd) {
+            position: relative;
+            background: #fff;
+            border: 1px solid #777;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 15px;
+            margin-right: 20%;
+            clear: both;
+            max-width: 500px;
+            float: left;
+        }
+        .balloon:after,
+        .balloon:before {
+            right: 100%;
+            top: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+        .balloon:after {
+            border-color: rgba(255, 255, 255, 0);
+            border-right-color: #fff;
+            border-width: 7px;
+            margin-top: -7px;
+        }
+        .balloon:before {
+            border-color: rgba(0, 0, 0, 0);
+            border-right-color: #000;
+            border-width: 8px;
+            margin-top: -8px;
+        }
+         
+        /*******************************
+        * 右からの吹き出し
+        ********************************/
+        .balloon:nth-child(even) {
+            position: relative;
+            background: #85e249;
+            border: 1px solid #777;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 15px;
+            margin-left: 20%;
+            clear: both;
+            max-width: 500px;
+            float: right;
+        }
+        .right_balloon:after,
+        .right_balloon:before {
+            left: 100%;
+            top: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+        .right_balloon:after {
+            border-color: rgba(133, 226, 73, 0);
+            border-left-color: #85e249;
+            border-width: 7px;
+            margin-top: -7px;
+        }
+        .right_balloon:before {
+            border-color: rgba(119, 119, 119, 0);
+            border-left-color: #777;
+            border-width: 8px;
+            margin-top: -8px;
+        }
+         
+        /*******************************
+        * 割り込みを解除
+        ********************************/
+        .clear_balloon{
+          clear: both;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta property="og:title" content="Milkcocoaで作ったリアルタイムチャット" />
+    <meta property="og:type" content="chat" />
+    <meta property="og:description" content="BaaS（Milkcocoa）で作られたリアルタイムチャット" />
+    <title>LINE風チャットapp</title>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="http://cdn.mlkcca.com/v2.0.0/milkcocoa.js"></script>
+    <script>
+    $(function() {
+        //1.ミルクココアインスタンスを作成
+        var milkcocoa = new MilkCocoa("appleifc51thg.mlkcca.com");
+
+        //2."message"データストアを作成
+        var ds = milkcocoa.dataStore("message");
+
+        //3."message"データストアからメッセージを取ってくる
+        ds.stream().sort("dsc").size(8).next(function(err, datas) {
+            // console.log('asc');
+            // console.table(datas);
+            datas.forEach(function(data) {
+                renderMessage(data);
+            });
+        });
+
+        // ds.stream().sort("desc").size(3).next(function(err, datas) {
+        //     console.log('desc');
+        //     console.table(datas);
+        //     concole.table←超便利！
+        //     datas.forEach(function(data) {
+        //         renderMessage(data);
+        //     });
+        // });
+
+        //4."message"データストアのプッシュイベントを監視
+        ds.on("push", function(e) {
+            renderMessage(e);
+        });
+
+        var last_message = "dummy";
+
+        function renderMessage(message) {
+            var message_html = '<p class="balloon">' + escapeHTML(message.value.content) + '</p><div class="clear_balloon"></div>';
+            var date_html = '';
+            if(message.value.date) {
+                date_html = '<p class="post-date">' + escapeHTML(message.value.name) + ' ' + escapeHTML( new Date(message.value.date).toLocaleTimeString()) + '</p>';
+            }
+            $("#"+last_message).before('<div id="'+message.id+'" class="post">'+message_html + date_html +'</div>');
+            last_message = message.id;
+        }
+
+        function post() {
+            //5."message"データストアにメッセージをプッシュする
+            var content = escapeHTML($("#content").val());
+            var name = escapeHTML($("#name").val());
+
+            if (content && content !== "" && name !== "") {
+                ds.push({
+                    name: name,
+                    content: content,
+                    date: new Date().getTime()
+                }, function (e) {});
+            }
+            $("#content").val("");
+            $("#name").val("");
+        }
+
+        $('#content').keydown(function (e) {
+            if (e.which == 13){
+                post();
+                return false;
+            }
+        });
+    });
+    //インジェクション対策
+    function escapeHTML(val) {
+        return $('<div>').text(val).html();
+    };
+    </script>
+</head>
+
+<body>
+    <div class="container bgc">
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="messages" class="content">
+                    <div id="dummy"></div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+            <div class="container">
+                <div class="text-center form-group row">
+                    <div class="col-xs-4">
+                        <textarea name="" id="name" cols="5" rows="1" placeholder="name:" class="form-control"></textarea>
+                    </div>
+                    <div class="col-xs-8">
+                        <textarea name="" id="content" cols="30" rows="1" placeholder="content:" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>
