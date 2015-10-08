@@ -7,7 +7,7 @@
         /*******************************
         * 左からの吹き出し
         ********************************/
-        .balloon:nth-child(odd) {
+        .left_balloon {
             position: relative;
             background: #fff;
             border: 1px solid #777;
@@ -19,8 +19,8 @@
             max-width: 500px;
             float: left;
         }
-        .balloon:after,
-        .balloon:before {
+        .left_balloon:after,
+        .left_balloon:before {
             right: 100%;
             top: 50%;
             border: solid transparent;
@@ -30,13 +30,13 @@
             position: absolute;
             pointer-events: none;
         }
-        .balloon:after {
+        .left_balloon:after {
             border-color: rgba(255, 255, 255, 0);
             border-right-color: #fff;
             border-width: 7px;
             margin-top: -7px;
         }
-        .balloon:before {
+        .left_balloon:before {
             border-color: rgba(0, 0, 0, 0);
             border-right-color: #000;
             border-width: 8px;
@@ -46,7 +46,7 @@
         /*******************************
         * 右からの吹き出し
         ********************************/
-        .balloon:nth-child(even) {
+        .right_balloon {
             position: relative;
             background: #85e249;
             border: 1px solid #777;
@@ -132,14 +132,19 @@
         var last_message = "dummy";
 
         function renderMessage(message) {
-            var message_html = '<p class="balloon">' + escapeHTML(message.value.content) + '</p><div class="clear_balloon"></div>';
+            var message_html = '<p class="test">' + escapeHTML(message.value.content) + '</p><div class="clear_balloon"></div>';
             var date_html = '';
             if(message.value.date) {
-                date_html = '<p class="post-date">' + escapeHTML(message.value.name) + ' ' + escapeHTML( new Date(message.value.date).toLocaleTimeString()) + '</p>';
+                date_html = '<p class="post-date"><small>' + escapeHTML(message.value.name) + ' ' + escapeHTML( new Date(message.value.date).toLocaleTimeString()) + '</small></p>';
             }
-            $("#"+last_message).before('<div id="'+message.id+'" class="post">'+message_html + date_html +'</div>');
+            $("#"+last_message).before('<div id="'+message.id+'" class="'+escapeHTML(message.value.name)+' post">'+message_html + date_html +'</div>');
             last_message = message.id;
-        }
+
+            $('.post').addClass('left_balloon');
+            $('.太郎').addClass('right_balloon');
+            // $('.post:odd').addClass('right_balloon');
+
+            }
 
         function post() {
             //5."message"データストアにメッセージをプッシュする
