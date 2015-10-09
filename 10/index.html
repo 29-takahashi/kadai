@@ -139,11 +139,8 @@
             }
             $("#"+last_message).before('<div id="'+message.id+'" class="'+escapeHTML(message.value.name)+' post">'+message_html + date_html +'</div>');
             last_message = message.id;
-
-            $('.post').addClass('left_balloon');
+            $('.花子').addClass('left_balloon');
             $('.太郎').addClass('right_balloon');
-            // $('.post:odd').addClass('right_balloon');
-
             }
 
         function post() {
@@ -168,11 +165,21 @@
                 return false;
             }
         });
+        //削除処理
+        $("#delete").on("click", function(){
+            ds.stream().next(function(err, datas) {
+                datas.forEach(function(data) {
+                    ds.remove(data.id);
+                });
+            });
+        });
+
     });
     //インジェクション対策
     function escapeHTML(val) {
         return $('<div>').text(val).html();
     };
+
     </script>
 </head>
 
@@ -188,11 +195,14 @@
         <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
             <div class="container">
                 <div class="text-center form-group row">
-                    <div class="col-xs-4">
+                    <div class="col-xs-3">
                         <textarea name="" id="name" cols="5" rows="1" placeholder="name:" class="form-control"></textarea>
                     </div>
-                    <div class="col-xs-8">
+                    <div class="col-xs-7">
                         <textarea name="" id="content" cols="30" rows="1" placeholder="content:" class="form-control"></textarea>
+                    </div>
+                    <div class="col-xs-2">
+                        <button id="delete" type="button" class="btn btn-success btn-xs">削除</button>
                     </div>
                 </div>
             </div>
