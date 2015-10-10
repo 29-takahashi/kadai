@@ -1,4 +1,5 @@
 <?php
+	include("func.php");
 	$search = $_GET["search"];
 	$pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
 	// id を直接代入せず、:idを入れる
@@ -10,7 +11,7 @@
 	// HTML出力用の変数 $view を宣言
 	$view = "";
 	// $view に表示する文字列を追記していく
-	$view .= "<table>";
+	$view .= '<table class="table table-striped table-bordered">';
 	foreach($results as $row) {
 		$view .= "<tr>";
 		$view .= '<td><a href="news.php?id=' .$row["news_id"]. '">' .$row["news_title"]. '</a></td>';
@@ -19,15 +20,15 @@
 	// table閉じタグで終了
 	$view .= '</table>';
 	$pdo = null;
-?>
 
-<?php include("header.php") ?>
+	include("header.php");
+?>
 
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-9">
 			<h2>検索結果</h2>
-			<pre><?php echo $view ?></pre>
+			<?php echo $view ?>
 		</div>
 		<div class="col-xs-12 col-sm-3">
 			<?php include("sidebar.php") ?>

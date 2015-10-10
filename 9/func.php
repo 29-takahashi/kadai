@@ -103,4 +103,11 @@
 		}
 	    $pdo = null;    
 	}
+	//sidebarランキング関数
+	function sidebar(){
+		$num = 5; //人気記事の表示したい件数を入力
+		$sql = "SELECT * FROM news,img,category,click_count where show_flg = 1 AND news.news_id = img.news_id AND news.category_id = category.category_id AND news.news_id = click_count.news_id GROUP BY click_count.news_id ORDER BY COUNT(click_count.news_id) DESC LIMIT $num";
+		db_start($sql);
+		$pdo = null;
+	}
 ?>

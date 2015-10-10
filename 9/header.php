@@ -31,7 +31,7 @@
         </div>
         <div class="navbar-collapse collapse"><!-- nav-collapse -->
           <ul class="nav navbar-nav navbar-right">
-            <!-- <li><a href="admin/">管理画面</a></li> -->
+            <li><a href="admin/">管理画面</a></li>
             <li>
               <form action="search_execute.php" method="get" class="navbar-form navbar-right">
                 <div class="row">
