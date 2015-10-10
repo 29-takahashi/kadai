@@ -4,10 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <style>
-        /*******************************
-        * 左からの吹き出し
-        ********************************/
-        .left_balloon {
+        /* 割り込みを解除 */
+        .clear_balloon{
+          clear: both;
+        }
+        .space2{
+            margin-bottom: 100px;
+        }
+        /* 左吹き出し */
+        .post:nth-child(odd){
             position: relative;
             background: #fff;
             border: 1px solid #777;
@@ -19,8 +24,7 @@
             max-width: 500px;
             float: left;
         }
-        .left_balloon:after,
-        .left_balloon:before {
+        .post:nth-child(odd):after,.post:nth-child(odd):before{
             right: 100%;
             top: 50%;
             border: solid transparent;
@@ -30,23 +34,20 @@
             position: absolute;
             pointer-events: none;
         }
-        .left_balloon:after {
+        .post:nth-child(odd):after {
             border-color: rgba(255, 255, 255, 0);
             border-right-color: #fff;
             border-width: 7px;
             margin-top: -7px;
         }
-        .left_balloon:before {
+        .post:nth-child(odd):before {
             border-color: rgba(0, 0, 0, 0);
             border-right-color: #000;
             border-width: 8px;
             margin-top: -8px;
         }
-         
-        /*******************************
-        * 右からの吹き出し
-        ********************************/
-        .right_balloon {
+        /* 右吹き出し */
+        .post:nth-child(even){
             position: relative;
             background: #85e249;
             border: 1px solid #777;
@@ -58,8 +59,8 @@
             max-width: 500px;
             float: right;
         }
-        .right_balloon:after,
-        .right_balloon:before {
+        .post:nth-child(even):after,
+        .post:nth-child(even):before {
             left: 100%;
             top: 50%;
             border: solid transparent;
@@ -69,24 +70,17 @@
             position: absolute;
             pointer-events: none;
         }
-        .right_balloon:after {
+        .post:nth-child(even):after {
             border-color: rgba(133, 226, 73, 0);
             border-left-color: #85e249;
             border-width: 7px;
             margin-top: -7px;
         }
-        .right_balloon:before {
+        .post:nth-child(even):before {
             border-color: rgba(119, 119, 119, 0);
             border-left-color: #777;
             border-width: 8px;
             margin-top: -8px;
-        }
-         
-        /*******************************
-        * 割り込みを解除
-        ********************************/
-        .clear_balloon{
-          clear: both;
         }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -109,20 +103,11 @@
         //3."message"データストアからメッセージを取ってくる
         ds.stream().sort("dsc").size(8).next(function(err, datas) {
             // console.log('asc');
-            // console.table(datas);
+            // console.table(datas);←超便利
             datas.forEach(function(data) {
                 renderMessage(data);
             });
         });
-
-        // ds.stream().sort("desc").size(3).next(function(err, datas) {
-        //     console.log('desc');
-        //     console.table(datas);
-        //     concole.table←超便利！
-        //     datas.forEach(function(data) {
-        //         renderMessage(data);
-        //     });
-        // });
 
         //4."message"データストアのプッシュイベントを監視
         ds.on("push", function(e) {
@@ -132,15 +117,13 @@
         var last_message = "dummy";
 
         function renderMessage(message) {
-            var message_html = '<p class="test">' + escapeHTML(message.value.content) + '</p><div class="clear_balloon"></div>';
+            var message_html = '<p>' + escapeHTML(message.value.content) + '</p><div class="clear_balloon"></div>';
             var date_html = '';
             if(message.value.date) {
                 date_html = '<p class="post-date"><small>' + escapeHTML(message.value.name) + ' ' + escapeHTML( new Date(message.value.date).toLocaleTimeString()) + '</small></p>';
             }
-            $("#"+last_message).before('<div id="'+message.id+'" class="'+escapeHTML(message.value.name)+' post">'+message_html + date_html +'</div>');
+            $("#"+last_message).before('<div id="'+message.id+'" class="post">'+message_html + date_html +'</div>');
             last_message = message.id;
-            $('.花子').addClass('left_balloon');
-            $('.太郎').addClass('right_balloon');
             }
 
         function post() {
@@ -158,6 +141,10 @@
             $("#content").val("");
             $("#name").val("");
         }
+
+        $('#send').on("click", function () {
+            post();
+        });
 
         $('#content').keydown(function (e) {
             if (e.which == 13){
@@ -179,7 +166,6 @@
     function escapeHTML(val) {
         return $('<div>').text(val).html();
     };
-
     </script>
 </head>
 
@@ -192,17 +178,22 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12 space2">
+                <button id="delete" type="button" class="btn btn-warning">削除</button>
+            </div>
+        </div>
         <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
             <div class="container">
                 <div class="text-center form-group row">
                     <div class="col-xs-3">
                         <textarea name="" id="name" cols="5" rows="1" placeholder="name:" class="form-control"></textarea>
                     </div>
-                    <div class="col-xs-7">
+                    <div class="col-xs-6">
                         <textarea name="" id="content" cols="30" rows="1" placeholder="content:" class="form-control"></textarea>
                     </div>
-                    <div class="col-xs-2">
-                        <button id="delete" type="button" class="btn btn-success btn-xs">削除</button>
+                    <div class="col-xs-3">
+                        <button id="send" type="button" class="btn btn-success">送信</button>
                     </div>
                 </div>
             </div>
