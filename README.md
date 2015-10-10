@@ -6,7 +6,7 @@
 
 ##課題
 * [課題10：LINE風チャットApp](# "課題10：LINE風チャットApp")
-* [list2](# "list2")
+* [list2](kadai_10 "list2")
 * [list3](# "list3")
 * [list4](# "list4")
 * [list5](# "list5")
