@@ -41,3 +41,5 @@ dataStore.stream().next(function(data){
     });
 });
 ```
+
+[indexへ戻る](README.md "indexへ戻る")
