@@ -1,5 +1,7 @@
 #課題10：LINE風チャットApp
 
+![line](http://pero.jpn.org/wp/wp-content/uploads/kadai/line.jpg "line")
+
 ##主旨
 **「MILKCOCOA」**のをAPIを利用して、リアルタイムチャットを作成。
 

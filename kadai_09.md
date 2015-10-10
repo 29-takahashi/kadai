@@ -1,5 +1,7 @@
 #課題09：独自CMS（ニュース）
 
+![cms](http://pero.jpn.org/wp/wp-content/uploads/kadai/nicedaddy.jpg "news")
+
 ##主旨
 **PHP** で独自のニュース **CMS** を作成。
 
