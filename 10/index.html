@@ -2,173 +2,19 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
+    <title>LINE風チャットapp</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <style>
-        /* 割り込みを解除 */
-        .clear_balloon{
-          clear: both;
-        }
-        .space2{
-            margin-bottom: 100px;
-        }
-        /* 左吹き出し */
-        .post:nth-child(odd){
-            position: relative;
-            background: #fff;
-            border: 1px solid #777;
-            margin: 10px;
-            padding: 10px;
-            border-radius: 15px;
-            margin-right: 20%;
-            clear: both;
-            max-width: 500px;
-            float: left;
-        }
-        .post:nth-child(odd):after,.post:nth-child(odd):before{
-            right: 100%;
-            top: 50%;
-            border: solid transparent;
-            content: " ";
-            height: 0;
-            width: 0;
-            position: absolute;
-            pointer-events: none;
-        }
-        .post:nth-child(odd):after {
-            border-color: rgba(255, 255, 255, 0);
-            border-right-color: #fff;
-            border-width: 7px;
-            margin-top: -7px;
-        }
-        .post:nth-child(odd):before {
-            border-color: rgba(0, 0, 0, 0);
-            border-right-color: #000;
-            border-width: 8px;
-            margin-top: -8px;
-        }
-        /* 右吹き出し */
-        .post:nth-child(even){
-            position: relative;
-            background: #85e249;
-            border: 1px solid #777;
-            margin: 10px;
-            padding: 10px;
-            border-radius: 15px;
-            margin-left: 20%;
-            clear: both;
-            max-width: 500px;
-            float: right;
-        }
-        .post:nth-child(even):after,
-        .post:nth-child(even):before {
-            left: 100%;
-            top: 50%;
-            border: solid transparent;
-            content: " ";
-            height: 0;
-            width: 0;
-            position: absolute;
-            pointer-events: none;
-        }
-        .post:nth-child(even):after {
-            border-color: rgba(133, 226, 73, 0);
-            border-left-color: #85e249;
-            border-width: 7px;
-            margin-top: -7px;
-        }
-        .post:nth-child(even):before {
-            border-color: rgba(119, 119, 119, 0);
-            border-left-color: #777;
-            border-width: 8px;
-            margin-top: -8px;
-        }
-    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta property="og:title" content="Milkcocoaで作ったリアルタイムチャット" />
     <meta property="og:type" content="chat" />
     <meta property="og:description" content="BaaS（Milkcocoa）で作られたリアルタイムチャット" />
-    <title>LINE風チャットapp</title>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="http://cdn.mlkcca.com/v2.0.0/milkcocoa.js"></script>
-    <script>
-    $(function() {
-        //1.ミルクココアインスタンスを作成
-        var milkcocoa = new MilkCocoa("appleifc51thg.mlkcca.com");
-
-        //2."message"データストアを作成
-        var ds = milkcocoa.dataStore("message");
-
-        //3."message"データストアからメッセージを取ってくる
-        ds.stream().sort("dsc").size(8).next(function(err, datas) {
-            // console.log('asc');
-            // console.table(datas);←超便利
-            datas.forEach(function(data) {
-                renderMessage(data);
-            });
-        });
-
-        //4."message"データストアのプッシュイベントを監視
-        ds.on("push", function(e) {
-            renderMessage(e);
-        });
-
-        var last_message = "dummy";
-
-        function renderMessage(message) {
-            var message_html = '<p>' + escapeHTML(message.value.content) + '</p><div class="clear_balloon"></div>';
-            var date_html = '';
-            if(message.value.date) {
-                date_html = '<p class="post-date"><small>' + escapeHTML(message.value.name) + ' ' + escapeHTML( new Date(message.value.date).toLocaleTimeString()) + '</small></p>';
-            }
-            $("#"+last_message).before('<div id="'+message.id+'" class="post">'+message_html + date_html +'</div>');
-            last_message = message.id;
-            }
-
-        function post() {
-            //5."message"データストアにメッセージをプッシュする
-            var content = escapeHTML($("#content").val());
-            var name = escapeHTML($("#name").val());
-
-            if (content && content !== "" && name !== "") {
-                ds.push({
-                    name: name,
-                    content: content,
-                    date: new Date().getTime()
-                }, function (e) {});
-            }
-            $("#content").val("");
-            $("#name").val("");
-        }
-
-        $('#send').on("click", function () {
-            post();
-        });
-
-        $('#content').keydown(function (e) {
-            if (e.which == 13){
-                post();
-                return false;
-            }
-        });
-        //削除処理
-        $("#delete").on("click", function(){
-            ds.stream().next(function(err, datas) {
-                datas.forEach(function(data) {
-                    ds.remove(data.id);
-                });
-            });
-        });
-
-    });
-    //インジェクション対策
-    function escapeHTML(val) {
-        return $('<div>').text(val).html();
-    };
-    </script>
+    <script type="text/javascript" src="mkcc.js"></script>    
 </head>
-
 <body>
     <div class="container bgc">
         <div class="row">
