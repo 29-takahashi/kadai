@@ -7,8 +7,6 @@
 
 
 ##課題
+* [課題11：ぐるなびAPIを利用](kadai_11.md "課題11：ぐるなびAPIを利用")
 * [課題10：LINE風チャットApp](kadai_10.md "課題10：LINE風チャットApp")
 * [課題09：独自CMS（ニュース）](kadai_09.md "課題09：独自CMS（メディア）")
-
-##ドキュメント構成参考
-[GitHubでテキストドキュメントを公開する](http://qiita.com/hkusu/items/847718366af992439b3f "GitHubでテキストドキュメントを公開する")
