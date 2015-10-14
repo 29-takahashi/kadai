@@ -1,5 +1,5 @@
 <div class="col-xs-12 col-sm-3 text-center">
-	<h2>Popularity</h2>
+	<h2><small><span class="glyphicon glyphicon-star" aria-hidden="true"></span></small> Popularity</h2>
 	<?php
 		sidebar(); //sidebarランキング関数呼び出し
 		foreach($results as $row) {

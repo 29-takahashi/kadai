@@ -35,7 +35,7 @@
 <div id="green">
 	<div class="container">
 		<div class="row">
-			<h2>News</h2>
+			<h2><small><span class="glyphicon glyphicon-th" aria-hidden="true"></span></small> News</h2>
 			<!-- Google AJAX Feed API -->
 			<div id="topics"></div>
 		</div>
@@ -45,7 +45,7 @@
 <div class="hello">
 	<div class="container">
 		<div class="row">
-			<h2>Lunch</h2>				
+			<h2><small><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span></small> Lunch</h2>				
 			<!-- ぐるなびレストラン検索API -->
 			<?php include("gurunabi.php"); ?>
 		</div>

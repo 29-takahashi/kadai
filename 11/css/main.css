@@ -47,7 +47,7 @@ p {
 
 /* Links */
 a {
-    color: #f85c37;
+    color: #74cfae;
     /*color: #777;*/
     word-wrap: break-word;
 
@@ -234,4 +234,11 @@ a:after {
 	margin-bottom: 10px;
 	border-radius: 10px;
 	float: left;
+}
+
+.caption h3{
+	color: #74cfae;
+}
+.small_c{
+	color: #74cfae;
 }

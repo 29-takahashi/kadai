@@ -1,5 +1,5 @@
 // 初期設定
-var disp_entry_count = 5; //表示させたい記事の数
+var disp_entry_count = 6; //表示させたい記事の数
  
 // RSS URL
 var site = new Array();
@@ -7,7 +7,7 @@ var site = new Array();
 site[0] = { 
  title:'mamapicks',
  url:'http://mamapicks.jp/index.rdf',
- disp_entry:5 // 取得する記事の数
+ disp_entry:6 // 取得する記事の数
 };
  
 site[1] = { 
@@ -97,10 +97,10 @@ function disp() {
  // 記事をhtmlに整形
  for (var l=0; l<disp_entry_count; l++){
 	 if (entries.length < l+1){ break; }
-	 Feed += '<div class="col-xs-12 col-sm-4"><div class="thumbnail">';
+	 Feed += '<div class="col-xs-12 col-sm-4"><div class="thumbnail" style="height: 570px;">';
 	 if (entries[l]['img'] != null) { Feed += '<a href="' + entries[l]['link'] + '"><img src="' + entries[l]['img'][0] + '" class="img-responsive center-block"></a>'; }
 	 Feed += '<div class="caption"><h3><a href="'+ entries[l]['link'] + '">' + entries[l]['title'] + '</a></h3>'
-	 + '<p class="pero">' + entries[l]['contentSnippet'].substr(0, 100) + '...</p></div></div></div>';
+	 + '<p>' + entries[l]['contentSnippet'].substr(0, 100) + '...</p></div></div></div>';
 	 }
 	 // 表示するタグに追加
 	 $('#topics').append( Feed );
